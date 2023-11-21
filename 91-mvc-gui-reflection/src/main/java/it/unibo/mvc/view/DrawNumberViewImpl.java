@@ -5,23 +5,21 @@ import it.unibo.mvc.api.DrawNumberView;
 import it.unibo.mvc.api.DrawResult;
 
 public class DrawNumberViewImpl implements DrawNumberView {
+    
+    private DrawNumberController controller;
 
     @Override
     public void setController(DrawNumberController observer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setController'");
+        this.controller = observer;
     }
 
     @Override
     public void start() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'start'");
     }
 
     @Override
     public void result(DrawResult res) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'result'");
+        System.out.println(res.getDescription());
     }
 
     
