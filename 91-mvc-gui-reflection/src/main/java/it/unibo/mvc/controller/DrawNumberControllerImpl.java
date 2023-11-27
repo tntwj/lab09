@@ -38,6 +38,9 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
     @Override
     public void newAttempt(final int n) {
         Objects.requireNonNull(views.get(0), "There is no view attached!").result(model.attempt(n));
+        for(var view: views) {
+            view.result(model.attempt(n));
+        }
     }
 
     @Override
