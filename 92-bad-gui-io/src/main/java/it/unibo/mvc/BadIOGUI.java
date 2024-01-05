@@ -47,9 +47,9 @@ public class BadIOGUI {
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
         final JButton read = new JButton("read on file");
-        canvas.add(panel, BorderLayout.CENTER);
         panel.add(write);
         panel.add(read);
+        canvas.add(panel, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
@@ -76,10 +76,10 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                try (BufferedReader re = new BufferedReader(new FileReader(PATH, StandardCharsets.UTF_8))) {
-                    String line;
-                    while((line = re.readLine()) != null) {
-                        System.out.println(line);
+                try  {
+                    final List<String> lines = Files.readAllLines(new File(PATH).toPath());
+                    for (final String line: lines) {
+                        System.out.println(line); // NOPMD: allowed as this is just an exercise
                     }
                 } catch (IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
@@ -110,6 +110,7 @@ public class BadIOGUI {
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
+        frame.pack();
         
         /*
          * OK, ready to push the frame onscreen
